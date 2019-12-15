@@ -18,12 +18,7 @@ set to SPEECH_SERVICE_KEY in our sample.
 For example:
 subscription_key = "Your-Key-Goes-Here"
 '''
-
-if 'SPEECH_SERVICE_KEY' in os.environ:
-    subscription_key = os.environ['SPEECH_SERVICE_KEY']
-else:
-    print('Environment variable for your subscription key is not set.')
-    exit()
+subscription_key = "db322aaaf2854fcd9025197d9744d430"
 
 class TextToSpeech(object):
     def __init__(self, subscription_key):
@@ -37,7 +32,7 @@ class TextToSpeech(object):
     subscription key for an access token that is valid for ten minutes.
     '''
     def get_token(self):
-        fetch_token_url = "https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken"
+        fetch_token_url = "https://australiaeast.api.cognitive.microsoft.com/sts/v1.0/issueToken"
         headers = {
             'Ocp-Apim-Subscription-Key': self.subscription_key
         }
@@ -45,7 +40,7 @@ class TextToSpeech(object):
         self.access_token = str(response.text)
 
     def save_audio(self):
-        base_url = 'https://westus.tts.speech.microsoft.com/'
+        base_url = 'https://australiaeast.tts.speech.microsoft.com/'
         path = 'cognitiveservices/v1'
         constructed_url = base_url + path
         headers = {
@@ -77,7 +72,7 @@ class TextToSpeech(object):
             print("Reason: " + str(response.reason) + "\n")
 
     def get_voices_list(self):
-        base_url = 'https://westus.tts.speech.microsoft.com/'
+        base_url = 'https://australiaeast.tts.speech.microsoft.com/'
         path = 'cognitiveservices/voices/list'
         constructed_url = base_url + path
         headers = {
